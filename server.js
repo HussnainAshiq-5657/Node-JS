@@ -5,12 +5,9 @@ const path = require('path');
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'))
 
 const PORT = 3000;
-
-app.listen(PORT, () => {
-  console.log(`Your Project is Running on PORT Number ${PORT}`);
-});
 
 app.get('/', (req, res) => {
   res.json({
@@ -31,9 +28,7 @@ app.get('/abouts', (req, res) => {
   res.sendFile(path.join(__dirname, 'Files', 'ali.pdf'));
 });
 
-app.post('/submit', (req, res) => {
-  res.send(req.body);
-});
+
 
 app.get('/gallery', (req, res) => {
   const Items = ['Hussnain', 'Ali', 'Hassan', 'Ali'];
@@ -63,6 +58,20 @@ app.get('/gallery', (req, res) => {
     title: 'Gallery Page',
     message: ' Lorem ipsum, dolor sit ',
     items: Items,
-    data
+    data,
   });
+});
+
+app.get('/form', (req, res) => {
+  res.render('Form',{message:null});
+});
+app.post('/submit', (req, res) => {
+  const value = req.body.myname;
+
+  const message = `You Submitted a form with Value : ${value}`;
+  res.render('Form',{message:message});
+});
+
+app.listen(PORT, () => {
+  console.log(`Your Project is Running on PORT Number ${PORT}`);
 });

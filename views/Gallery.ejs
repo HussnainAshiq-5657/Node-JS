@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title%></title>
-  </head>
-  <body>
-    <h1><%= title %></h1>
+<%- include('header') %>
+        <div class="row mb-5">
+            <div class="col">
+                <h1><%= title %></h1>
     <p><%= message %></p>
     <ul>
         <% items.forEach((items)=>{ %>
            <li><%= items %></li>
       <%  }) %>
     </ul>
-    <table border="1" cellpadding="10" cellspacing="10">
+    <table class="table">
         <thead>
             <th>Name</th>
             <th>Age</th>
@@ -29,5 +24,7 @@
          <%  }) %>
         </tbody>
     </table>
-  </body>
-</html>
+            </div>
+        </div>
+        
+       <%- include('footer') %>
